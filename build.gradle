@@ -1,0 +1,38 @@
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    
+    testCompile 'info.cukes:cucumber-java:1.2.4'
+    testCompile 'info.cukes:cucumber-junit:1.2.4'
+    testCompile 'info.cukes:cucumber-spring:1.2.4'
+
+    testCompile 'io.appium:java-client:4.0.0'
+
+    testCompile 'org.seleniumhq.selenium:selenium-java:2.50.0'
+    
+    testCompile 'org.springframework:spring-test:4.2.4.RELEASE'
+    testCompile 'org.springframework:spring-context:4.2.4.RELEASE'
+
+
+    compile "com.jayway.restassured:rest-assured:2.4.1"
+    compile 'commons-codec:commons-codec:1.10'
+    compile "com.google.guava:guava:18.0"
+    compile "commons-io:commons-io:2.4"
+    compile 'joda-time:joda-time:2.7'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'org.json:json:20090211'
+}
+
+test {
+    systemProperty "spring.profiles.active", System.properties.getProperty("spring.profiles.active")
+    reports {
+        junitXml.enabled = false
+        html.enabled = true
+    }
+}

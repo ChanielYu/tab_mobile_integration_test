@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 
+    
+    Domain object beans.
+    
+    Declared here are all our domain objects which should be wired up using spring. Use prototype scope to allow them 
+    to be independent and clean between test runs.
+    
+    All objects should be from the domain package in the src/java/com/tabcorp folder.
+    
+    -->
+
+    <!--<bean scope="prototype" class="com.tabcorp"/>-->
+
+</beans>
