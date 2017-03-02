@@ -3,6 +3,7 @@ package com.tabcorp.screens.TAB;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,11 @@ import org.springframework.stereotype.Component;
 })
 public class MainScreen {
     private AppiumDriver<? extends MobileElement> driver;
+    @Value("${explicit.wait}")
+    public int explicitWaitTime;
+
+    @Value("${implicit.wait}")
+    private int implicitWaitTime;
 
     @Autowired
     public MainScreen(AppiumDriver<? extends MobileElement> driver) {

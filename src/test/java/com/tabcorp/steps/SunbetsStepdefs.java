@@ -1,7 +1,6 @@
 package com.tabcorp.steps;
 
 import com.tabcorp.screens.TAB.MainScreen;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import org.springframework.beans.factory.annotation.Autowired;
 

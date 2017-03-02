@@ -3,6 +3,7 @@ package com.tabcorp.appium;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -57,11 +58,11 @@ public class AppiumDriverAndroidBeanFactory {
         System.out.println("\nApplication under Test is " + env + " - Android");
         //capabilities.setCapability("deviceName", "Galaxy Nexus 5 -5.0.0 -API 21 - 1080*1920");
         //capabilities.setCapability("app", "./candidate/android/DrawerFrameworkApp-debug.apk");
-        capabilities.setCapability("appActivity", "com.auxy.drawerframework.MainActivity");
+        capabilities.setCapability("appActivity", "au.com.tabcorp.sportsbet.ui.SplashActivity");
         //capabilities.setCapability("resetKeyboard", true);
         //capabilities.setCapability("unicodeKeyboard", true);
-        capabilities.setCapability("noReset", true);
-        capabilities.setCapability("newCommandTimeout", newCommandTimeout);
+        capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, newCommandTimeout);
 
         AppiumDriver<? extends MobileElement> driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
 //        AppiumDriver<? extends MobileElement> driver = new AndroidDriver<>(capabilities);
