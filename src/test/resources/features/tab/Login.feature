@@ -1,7 +1,12 @@
 @android
 Feature: Login Test
+
   Background: Enter home screen
     Given Splash screen launched
-    And I wait for 15 seconds
+    And I grant location permission
+    And I ignore update
+    And I confirm over 18
+
   Scenario: Login
-    When I am in Home screen
+    When I pass whats new screen
+    And I am in Home screen

@@ -197,6 +197,20 @@ public abstract class BaseScreen {
         }
     }
 
+    public boolean fluentWaitElementPresent(MobileElement element, int timeoutSeconds) {
+        FluentWait<AppiumDriver> fluentWait = new FluentWait<AppiumDriver>(driver)
+                .withTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .pollingEvery(200, TimeUnit.MILLISECONDS)
+                //.ignoring(NoSuchElementException.class)
+                .ignoring(NullPointerException.class);
+        try {
+            fluentWait.until(ExpectedConditions.visibilityOf(element));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
     public WebElement fluentWaitElementExist(String locator) {
         FluentWait<AppiumDriver> fluentWait = new FluentWait<AppiumDriver>(driver)
                 .withTimeout(defaultWaitTime, TimeUnit.SECONDS)

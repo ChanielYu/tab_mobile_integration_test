@@ -30,4 +30,9 @@ public class HomeScreeniOS extends HomeScreen {
     public boolean isUserLogedin() {
         return false;
     }
+
+    @Override
+    public void passWhatsNew() {
+
+    }
 }

@@ -22,6 +22,8 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @Profile("ios")
 public class AppiumDriverIOSBeanFactory {
+    private static AppiumDriver<? extends MobileElement> driver;
+
     @Value("${appium.server.port}")
     private String appiumPort;
 
@@ -39,30 +41,30 @@ public class AppiumDriverIOSBeanFactory {
 
     @Value("${new.command.timeout}")
     private String newCommandTimeout;
-
     @Value("${device.ready.timeout}")
     private String deviceReadyTimeout;
 
     @Bean(destroyMethod = "quit")
     @Scope("cucumber-glue")
     public AppiumDriver<? extends MobileElement> getDriver() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        String env = null;
-        env = System.getenv("UAT");
-        if (env == null) {
-            env = "SUNBETS";
+        if (driver == null) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            String env = null;
+            env = System.getenv("UAT");
+            if (env == null) {
+                env = "SUNBETS";
+            }
+            System.out.println("\nApplication under Test is " + env + " - iOS");
+
+            capabilities.setCapability("platform-version", "9.1");
+            capabilities.setCapability("deviceName", "iPhone 6");
+            capabilities.setCapability("platform-name", "iOS");
+            capabilities.setCapability("noReset", true);
+            capabilities.setCapability("newCommandTimeout", newCommandTimeout);
+
+            driver = new IOSDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+            driver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
         }
-        System.out.println("\nApplication under Test is " + env + " - iOS");
-
-        capabilities.setCapability("platform-version", "9.1");
-        capabilities.setCapability("deviceName", "iPhone 6");
-        capabilities.setCapability("platform-name", "iOS");
-        capabilities.setCapability("noReset", true);
-        capabilities.setCapability("newCommandTimeout", newCommandTimeout);
-
-        AppiumDriver<? extends MobileElement> driver = new IOSDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
-        driver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
-
         return driver;
     }
 }

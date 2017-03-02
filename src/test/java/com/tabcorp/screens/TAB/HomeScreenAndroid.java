@@ -27,6 +27,9 @@ public class HomeScreenAndroid extends HomeScreen {
     @AndroidFindBy(id = "au.com.tabcorp.tab_android_dev:id/btn_login")
     private MobileElement loginButton;
 
+    @AndroidFindBy(id = "au.com.tabcorp.tab_android_dev:id/close_btn")
+    private MobileElement getButton;
+
     @Autowired
     public HomeScreenAndroid(AppiumDriver<? extends MobileElement> driver) {
         super(driver);
@@ -35,5 +38,10 @@ public class HomeScreenAndroid extends HomeScreen {
     @Override
     public boolean isUserLogedin() {
         return loginButton.isDisplayed();
+    }
+
+    @Override
+    public void passWhatsNew() {
+        getButton.click();
     }
 }

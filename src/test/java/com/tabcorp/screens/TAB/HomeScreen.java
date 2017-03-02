@@ -14,4 +14,6 @@ public abstract class HomeScreen extends BaseScreen {
     }
 
     public abstract boolean isUserLogedin();
+
+    public abstract void passWhatsNew();
 }

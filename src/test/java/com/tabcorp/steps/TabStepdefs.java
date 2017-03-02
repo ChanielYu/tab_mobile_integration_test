@@ -5,6 +5,7 @@ import com.tabcorp.screens.TAB.HomeScreen;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.TimeUnit;
@@ -35,6 +36,12 @@ public class TabStepdefs {
     public void iAmInHomeScreen() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         assertTrue(homeScreen.isUserLogedin());
+    }
+
+    @When("^I pass whats new screen$")
+    public void iPassWhatsNewScreen() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homeScreen.passWhatsNew();
     }
 
     @Given("^Clean up$")
