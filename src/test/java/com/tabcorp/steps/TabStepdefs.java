@@ -1,10 +1,12 @@
 package com.tabcorp.steps;
 
+import com.tabcorp.screens.TAB.LeftMenuHomeScreen;
 import com.tabcorp.screens.TAB.MainScreen;
 import com.tabcorp.screens.TAB.HomeScreen;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +23,8 @@ public class TabStepdefs {
     private HomeScreen homeScreen;
     @Autowired
     private MainScreen mainScreen;
+    @Autowired
+    private LeftMenuHomeScreen leftMenu;
 
     @And("^I wait for (\\d+) seconds$")
     public void iWaitForSeconds(int seconds) throws Throwable {
@@ -47,5 +51,19 @@ public class TabStepdefs {
     @Given("^Clean up$")
     public void cleanUp() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+    }
+
+
+    @Given("^Left menu is open$")
+    public void leftMenuIsOpen() throws Throwable {
+       leftMenu.openLeftMenu();
+        throw new PendingException();
+    }
+
+
+    @Then("^Login/Join Now is displayed$")
+    public void loginJoinNowIsDisplayed() throws Throwable {
+        leftMenu.isLoginJoinDisplayed();
+        throw new PendingException();
     }
 }

@@ -24,11 +24,6 @@ import java.util.concurrent.TimeUnit;
         @PropertySource("classpath:config_test.properties")
 })
 public class HomeScreenAndroid extends HomeScreen {
-    @AndroidFindBy(id = "au.com.tabcorp.tab_android_dev:id/btn_login")
-    private MobileElement loginButton;
-
-    @AndroidFindBy(id = "au.com.tabcorp.tab_android_dev:id/close_btn")
-    private MobileElement getButton;
 
     @Autowired
     public HomeScreenAndroid(AppiumDriver<? extends MobileElement> driver) {
@@ -37,11 +32,11 @@ public class HomeScreenAndroid extends HomeScreen {
 
     @Override
     public boolean isUserLogedin() {
-        return loginButton.isDisplayed();
+        return getLoginButton().isDisplayed();
     }
 
     @Override
     public void passWhatsNew() {
-        getButton.click();
+        getOkGotItButton().click();
     }
 }
