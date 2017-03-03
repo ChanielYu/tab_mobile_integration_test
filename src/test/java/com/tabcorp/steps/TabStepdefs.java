@@ -57,13 +57,11 @@ public class TabStepdefs {
     @Given("^Left menu is open$")
     public void leftMenuIsOpen() throws Throwable {
        leftMenu.openLeftMenu();
-        throw new PendingException();
     }
 
 
     @Then("^Login/Join Now is displayed$")
     public void loginJoinNowIsDisplayed() throws Throwable {
-        leftMenu.isLoginJoinDisplayed();
-        throw new PendingException();
+        assertTrue(leftMenu.isLoginJoinDisplayed());
     }
 }

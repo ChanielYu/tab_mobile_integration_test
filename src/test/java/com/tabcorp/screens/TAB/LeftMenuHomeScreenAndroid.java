@@ -27,7 +27,7 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
     private MobileElement leftMenu;
     @AndroidFindBy(id = "join_button")
     private MobileElement joinNowButton;
-    @AndroidFindBy(id = "login_buttonn")
+    @AndroidFindBy(id = "login_button")
     private MobileElement loginButton;
 
 
