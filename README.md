@@ -6,7 +6,7 @@ The appium server for use with the `TAB_mobile_integration_test` repository.
 
 1. Ensure you have Homebrew.
 2. Install brew dependencies `brew install node`
-3. Run `./tab-appium-server setup` then `./tab-appium-server deps`
+3. Run `./tab-appium-server setup`.
 4. Check install `./tab-appium-server doctor`
 5. Run `./tab-appium-server android`
 
