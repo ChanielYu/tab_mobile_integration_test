@@ -67,6 +67,11 @@ public class TabStepdefs {
 
     @And("^Home/Racing/Sport/Watch links are displayed$")
     public void homeRacingSportWatchLinksAreDisplayed() throws Throwable {
-        leftMenu.areTabLinksDisplayed();
+        assertTrue(leftMenu.areTopLinksDisplayed());
+    }
+
+    @And("^TAB links are displayed$")
+    public void tabLinksAreDisplayed() throws Throwable {
+        assertTrue(leftMenu.areTabLinksDisplayed());
     }
 }

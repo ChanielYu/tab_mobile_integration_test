@@ -17,11 +17,16 @@ public abstract class LeftMenuHomeScreen extends BaseScreen {
 
     public abstract boolean isLoginJoinDisplayed();
 
+    public abstract boolean areTopLinksDisplayed();
+
     public abstract boolean areTabLinksDisplayed();
 
     public abstract void openLeftMenu();
 
-    public abstract ArrayList<String> buildTabLinksList();
+    public abstract ArrayList<String> buildTopLinksList();
+
+    public abstract ArrayList<String> buildTabLinksList(); //top links in Android
+
 
 
 
