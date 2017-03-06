@@ -4,6 +4,8 @@ import com.tabcorp.screens.BaseScreen;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
+import java.util.ArrayList;
+
 /**
  * Created by bat-elstoler on 2/3/17.
  */
@@ -15,7 +17,12 @@ public abstract class LeftMenuHomeScreen extends BaseScreen {
 
     public abstract boolean isLoginJoinDisplayed();
 
+    public abstract boolean areTabLinksDisplayed();
+
     public abstract void openLeftMenu();
+
+    public abstract ArrayList<String> buildTabLinksList();
+
 
 
 }
