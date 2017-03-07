@@ -70,6 +70,14 @@ public abstract class BaseScreen {
         return driver;
     }
 
+    public void setImplicitWaitTime(int sec) {
+        driver.manage().timeouts().implicitlyWait(sec, TimeUnit.SECONDS);
+    }
+
+    public void restoreImplicitWaitTime() {
+        driver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
+    }
+
     public boolean isElementPresent(By by) {
         try {
             return driver.findElement(by).isDisplayed();
