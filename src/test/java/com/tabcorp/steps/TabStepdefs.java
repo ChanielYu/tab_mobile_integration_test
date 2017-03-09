@@ -64,4 +64,14 @@ public class TabStepdefs {
     public void loginJoinNowIsDisplayed() throws Throwable {
         assertTrue(leftMenu.isLoginJoinDisplayed());
     }
+
+    @And("^Home/Racing/Sport/Watch links are displayed$")
+    public void homeRacingSportWatchLinksAreDisplayed() throws Throwable {
+        assertTrue(leftMenu.areTopLinksDisplayed());
+    }
+
+    @And("^TAB links are displayed$")
+    public void tabLinksAreDisplayed() throws Throwable {
+        assertTrue(leftMenu.areTabLinksDisplayed());
+    }
 }
