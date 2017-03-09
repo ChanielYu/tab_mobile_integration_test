@@ -36,24 +36,24 @@ import java.util.concurrent.TimeUnit;
 })
 public abstract class BaseScreen {
     @Value("${explicit.wait}")
-    protected int explicitWaitTime;
+    private int explicitWaitTime;
 
     @Value("${implicit.wait}")
-    public int implicitWaitTime;
+    private int implicitWaitTime;
 
     @Value("${default.wait}")
-    protected int defaultWaitTime;
+    private int defaultWaitTime;
 
     @Value("${environment}")
     public String environment;
 
     @Value("${scroll.maximumCount}")
-    protected int maxScrollCount;
+    private int maxScrollCount;
 
     @Autowired
     private Environment env;
 
-    protected String platform;
+    private String platform;
 
     protected AppiumDriver<? extends MobileElement> driver;
 
@@ -68,14 +68,6 @@ public abstract class BaseScreen {
 
     public AppiumDriver<? extends MobileElement> getDriver() {
         return driver;
-    }
-
-    public void setImplicitWaitTime(int sec) {
-        driver.manage().timeouts().implicitlyWait(sec, TimeUnit.SECONDS);
-    }
-
-    public void restoreImplicitWaitTime() {
-        driver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
     }
 
     public boolean isElementPresent(By by) {

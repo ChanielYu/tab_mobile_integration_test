@@ -32,11 +32,15 @@ public class HomeScreenAndroid extends HomeScreen {
 
     @Override
     public boolean isUserLogedin() {
-        return getLoginButton().isDisplayed();
+        return loginButton.isDisplayed();
     }
 
     @Override
     public void passWhatsNew() {
-        getOkGotItButton().click();
+        try {
+            OkGotItButton.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

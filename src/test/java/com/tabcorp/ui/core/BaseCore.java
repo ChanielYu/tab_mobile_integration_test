@@ -4,10 +4,6 @@ import io.appium.java_client.MobileElement;
 
 import java.util.concurrent.TimeUnit;
 
-
-/**
- * Created by tarikachandure on 10/08/16.
- */
 public class BaseCore {
 
     protected MobileElement mobileElement;
