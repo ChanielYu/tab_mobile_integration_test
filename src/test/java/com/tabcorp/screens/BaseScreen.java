@@ -86,6 +86,8 @@ public abstract class BaseScreen {
         }
     }
 
+    //toolbar_title
+
     public MobileElement getElement(String locatorName) {
         try {
             //String locatorKeyVal = env.getProperty(locatorName);
