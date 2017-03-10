@@ -1,11 +1,11 @@
 package com.tabcorp.steps;
 
-import com.tabcorp.screens.TAB.LeftMenuHomeScreen;
 import com.tabcorp.screens.TAB.SplashScreen;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
 
@@ -27,6 +27,7 @@ public class GenericStepdefs {
     @And("^I grant location permission$")
     public void iGrantLocationPermission() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+        splashScreen.ignoreUpdate();
         splashScreen.grantLocationPermission();
     }
 
@@ -39,12 +40,19 @@ public class GenericStepdefs {
     @And("^I confirm over (\\d+)$")
     public void iConfirmOver(int arg0) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+        splashScreen.ignoreUpdate();
         splashScreen.confirmOver18();
     }
 
     @Given("^Quit appium session$")
     public void quitAppiumSession() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        splashScreen.getDriver().closeApp();
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (java.lang.InterruptedException e) {
+            e.printStackTrace();
+        }
+        splashScreen.getDriver().launchApp();
     }
 }

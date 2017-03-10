@@ -1,3 +1,4 @@
 Feature: Clean up
-  Background: Clean up
+
+  Scenario: Quit
     Given Quit appium session

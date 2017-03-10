@@ -2,6 +2,7 @@ package com.tabcorp.steps;
 
 import com.tabcorp.screens.TAB.HomeScreen;
 import com.tabcorp.screens.TAB.LeftMenuHomeScreen;
+import com.tabcorp.screens.TAB.LoginScreen;
 import com.tabcorp.screens.TAB.MainScreen;
 import com.tabcorp.screens.TAB.Toolbar;
 import cucumber.api.java.en.And;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -22,7 +24,7 @@ public class TabStepdefs {
     @Autowired
     private HomeScreen homeScreen;
     @Autowired
-    private MainScreen mainScreen;
+    private LoginScreen loginScreen;
     @Autowired
     private LeftMenuHomeScreen leftMenu;
     @Autowired
@@ -34,14 +36,14 @@ public class TabStepdefs {
         try {
             TimeUnit.SECONDS.sleep(seconds);
         } catch (java.lang.InterruptedException e) {
-
+            e.printStackTrace();
         }
     }
 
     @And("^I am in Home screen$")
     public void iAmInHomeScreen() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        assertTrue(homeScreen.isUserLogedin());
+        assertTrue(homeScreen.isHomeScreen());
     }
 
     @When("^I pass whats new screen$")
@@ -65,6 +67,36 @@ public class TabStepdefs {
     @Then("^Login/Join Now is displayed$")
     public void loginJoinNowIsDisplayed() throws Throwable {
         assertTrue(leftMenu.isLoginJoinDisplayed());
+    }
+
+    @And("^User is not logged in$")
+    public void userIsNotLoggedIn() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        assertFalse(homeScreen.isUserLogedin());
+    }
+
+    @Then("^I click login button$")
+    public void iClickLoginButton() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homeScreen.enterLoginScreen();
+    }
+
+    @When("^I am in Login screen$")
+    public void iAmInLoginScreen() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(loginScreen.isLoginScreen());
+    }
+
+    @Then("^I login with user \"([^\"]*)\" password \"([^\"]*)\"$")
+    public void iLoginWithUserPassword(String userName, String passWord) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        loginScreen.login(userName, passWord);
+    }
+
+    @Then("^User is logged in$")
+    public void userIsLoggedIn() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(homeScreen.isUserLogedin());
     }
 
     @And("^Home/Racing/Sport/Watch links are displayed$")

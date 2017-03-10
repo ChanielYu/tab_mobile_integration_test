@@ -30,7 +30,6 @@ import java.util.concurrent.TimeUnit;
  */
 @SuppressWarnings("unused")
 @Component
-@Profile("android")
 @PropertySources({
         @PropertySource("classpath:config_test.properties")
 })

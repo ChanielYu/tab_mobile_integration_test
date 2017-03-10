@@ -15,15 +15,19 @@ import org.springframework.stereotype.Component;
  */
 @SuppressWarnings("unused")
 @Component
-@Configuration
+@Profile("ios")
 @PropertySources({
         @PropertySource("classpath:config_test.properties")
 })
-@Profile("ios")
 public class HomeScreeniOS extends HomeScreen {
     @Autowired
     public HomeScreeniOS(AppiumDriver<? extends MobileElement> driver) {
         super(driver);
+    }
+
+    @Override
+    public boolean isHomeScreen() {
+        return false;
     }
 
     @Override

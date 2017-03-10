@@ -63,7 +63,7 @@ public class SplashScreenAndroid extends SplashScreen {
             }
         } catch (Exception e) {
             appReset = false;
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -74,19 +74,19 @@ public class SplashScreenAndroid extends SplashScreen {
                 laterButton.click();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
     @Override
-    public void confirmOver18() {
+    public void confirmOver18(){
         if (appReset) {
             try {
                 if (okButton.isDisplayed() && "ok".equalsIgnoreCase(okButton.getText())) {
                     okButton.click();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
     }

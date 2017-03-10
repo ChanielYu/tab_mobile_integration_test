@@ -13,18 +13,35 @@ import java.util.concurrent.TimeUnit;
  * HomeScreen
  */
 public abstract class HomeScreen extends BaseScreen {
-    public HomeScreen(AppiumDriver<? extends MobileElement> driver) {
-        super(driver);
-    }
+    @WithTimeout(time = 5, unit = TimeUnit.SECONDS)
+    @AndroidFindBy(id = "toolbar_balance")
+    protected MobileElement toolbar_balance;
 
+    @WithTimeout(time = 3, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "au.com.tabcorp.tab_android_dev:id/btn_login")
     protected MobileElement loginButton;
 
     @WithTimeout(time = 3, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "close_btn")
-    protected MobileElement OkGotItButton; // the close what's new screen
+    protected MobileElement OkGotItButton; // to close what's new screen
 
-    public abstract boolean isUserLogedin();
+    public HomeScreen(AppiumDriver<? extends MobileElement> driver) {
+        super(driver);
+    }
+
+    public boolean isUserLogedin() {
+        try {
+            return toolbar_balance.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void enterLoginScreen() {
+        loginButton.click();
+    }
+
+    public abstract boolean isHomeScreen();
 
     public abstract void passWhatsNew();
 }

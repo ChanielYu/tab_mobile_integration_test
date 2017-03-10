@@ -17,11 +17,11 @@ import org.junit.runner.RunWith;
                 "junit:build/cucumber.xml"
         },
         features = {
-                "src/test/resources/features/tab/Login.feature",
-                "src/test/resources/features/tab/LeftHomeMenu.feature",
-                "src/test/resources/features/CleanUp.feature"
+                "src/test/resources/features/tab/Login.feature"
+                //,"src/test/resources/features/CleanUp.feature"
+                ,"src/test/resources/features/tab/LeftHomeMenu.feature"
         },
-        //tags={"@android"},
+        tags={"@android"},
         glue = {"com.tabcorp.steps"}
 )
 public class TabTest {

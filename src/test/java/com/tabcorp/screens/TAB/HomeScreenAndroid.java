@@ -25,14 +25,20 @@ import java.util.concurrent.TimeUnit;
 })
 public class HomeScreenAndroid extends HomeScreen {
 
+    @AndroidFindBy(id = "toolbar_logo")
+    private MobileElement toolbar_logo;
     @Autowired
     public HomeScreenAndroid(AppiumDriver<? extends MobileElement> driver) {
         super(driver);
     }
 
     @Override
-    public boolean isUserLogedin() {
-        return loginButton.isDisplayed();
+    public boolean isHomeScreen() {
+        try {
+            return toolbar_logo.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
