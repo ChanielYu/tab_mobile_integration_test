@@ -3,6 +3,7 @@ package com.tabcorp.screens;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.utils.WebDriverUnpackUtility;
 import org.apache.commons.io.FileUtils;
@@ -54,6 +55,9 @@ public abstract class BaseScreen {
     private Environment env;
 
     protected String platform;
+
+    @AndroidFindBy(id = "toolbar_title")
+    private MobileElement toolbarTitle;
 
     protected AppiumDriver<? extends MobileElement> driver;
 
@@ -329,5 +333,10 @@ public abstract class BaseScreen {
             driver.swipe(0, scrollStart, 0, scrollEnd, 2000);
         }
         Timeout.seconds(2);
+    }
+
+    public boolean verifyPageTitle(String title){
+        waitForElementPresent(toolbarTitle,3);
+        return title.equals(toolbarTitle.getText());
     }
 }

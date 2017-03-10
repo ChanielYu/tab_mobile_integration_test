@@ -1,9 +1,8 @@
 package com.tabcorp.steps;
 
+import com.tabcorp.screens.TAB.HomeScreen;
 import com.tabcorp.screens.TAB.LeftMenuHomeScreen;
 import com.tabcorp.screens.TAB.MainScreen;
-import com.tabcorp.screens.TAB.HomeScreen;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -73,5 +72,16 @@ public class TabStepdefs {
     @And("^TAB links are displayed$")
     public void tabLinksAreDisplayed() throws Throwable {
         assertTrue(leftMenu.areTabLinksDisplayed());
+    }
+
+
+    @And("^links are valid$")
+    public void linksAreValid() throws Throwable {
+        System.out.println("in linksAreValid");
+        leftMenu.areLeftMenuLinksValid();
+    }
+
+    @And("^Other links are displayed$")
+    public void otherLinksAreDisplayed() throws Throwable {
     }
 }

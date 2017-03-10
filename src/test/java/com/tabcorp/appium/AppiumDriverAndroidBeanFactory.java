@@ -51,7 +51,7 @@ public class AppiumDriverAndroidBeanFactory {
         if (driver == null) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
 
-            capabilities.setCapability("deviceName", "Galaxy_Nexus_API_23");
+            capabilities.setCapability("deviceName", "Samsung_SM-G900F");
             String env = null;
             env = System.getenv("UAT");
             if (env == null) {
@@ -62,7 +62,7 @@ public class AppiumDriverAndroidBeanFactory {
             capabilities.setCapability("appActivity", "au.com.tabcorp.sportsbet.ui.SplashActivity");
             //capabilities.setCapability("resetKeyboard", true);
             //capabilities.setCapability("unicodeKeyboard", true);
-            capabilities.setCapability(MobileCapabilityType.NO_RESET, false);
+            capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
             capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, newCommandTimeout);
 
             driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
