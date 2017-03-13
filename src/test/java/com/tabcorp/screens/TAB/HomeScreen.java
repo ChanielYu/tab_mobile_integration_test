@@ -5,6 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.WithTimeout;
+import org.springframework.context.annotation.Scope;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.TimeUnit;
  * Created by chanielyu on 2/3/17.
  * HomeScreen
  */
+@Scope("cucumber-glue")
 public abstract class HomeScreen extends BaseScreen {
     @WithTimeout(time = 5, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "toolbar_balance")
