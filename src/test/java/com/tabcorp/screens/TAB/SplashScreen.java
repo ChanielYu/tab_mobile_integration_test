@@ -14,6 +14,8 @@ public abstract class SplashScreen extends BaseScreen {
         super(driver);
     }
 
+    public abstract void passSplashScreen();
+
     public abstract boolean isImageViewSeen();
 
     public abstract void grantLocationPermission();

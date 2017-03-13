@@ -3,6 +3,7 @@ package com.tabcorp.steps;
 import com.tabcorp.screens.TAB.SplashScreen;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertTrue;
@@ -21,7 +22,7 @@ public class SplashScreenStepdefs {
         assertTrue(splashScreen.isImageViewSeen());
     }
 
-    @And("^I grant location permission$")
+    @Then("^I grant location permission$")
     public void iGrantLocationPermission() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         splashScreen.ignoreUpdate();
@@ -39,5 +40,11 @@ public class SplashScreenStepdefs {
         // Write code here that turns the phrase above into concrete actions
         splashScreen.ignoreUpdate();
         splashScreen.confirmOver18();
+    }
+
+    @Given("^Enter home screen$")
+    public void enterHomeScreen() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        splashScreen.passSplashScreen();
     }
 }

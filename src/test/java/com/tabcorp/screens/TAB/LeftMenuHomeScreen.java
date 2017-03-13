@@ -10,7 +10,6 @@ import java.util.ArrayList;
 /**
  * Created by bat-elstoler on 2/3/17.
  */
-@Scope("cucumber-glue")
 public abstract class LeftMenuHomeScreen extends BaseScreen {
 
     public LeftMenuHomeScreen(AppiumDriver<? extends MobileElement> driver) {

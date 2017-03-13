@@ -1,10 +1,7 @@
 Feature: Left Home menu test
-
-  Background:
+  Background: Pass splash screen
     Given Splash screen launched
-    And I grant location permission
-    # We have done this in other steps
-    #And I ignore update
+    Then I grant location permission
     And I confirm over 18
 
   @android @ios

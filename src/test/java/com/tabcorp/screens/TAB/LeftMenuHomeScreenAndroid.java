@@ -29,6 +29,7 @@ import static org.junit.Assert.assertTrue;
 @PropertySources({
         @PropertySource("classpath:config_test.properties")
 })
+@Scope("cucumber-glue")
 public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
 
     @Autowired

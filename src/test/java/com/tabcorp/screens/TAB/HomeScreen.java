@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
  * Created by chanielyu on 2/3/17.
  * HomeScreen
  */
-@Scope("cucumber-glue")
 public abstract class HomeScreen extends BaseScreen {
     @WithTimeout(time = 5, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "toolbar_balance")

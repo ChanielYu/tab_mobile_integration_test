@@ -3,15 +3,9 @@ package com.tabcorp.screens.TAB;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by chanielyu on 2/3/17.
@@ -23,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 @PropertySources({
         @PropertySource("classpath:config_test.properties")
 })
+@Scope("cucumber-glue")
 public class HomeScreenAndroid extends HomeScreen {
 
     @AndroidFindBy(id = "toolbar_logo")

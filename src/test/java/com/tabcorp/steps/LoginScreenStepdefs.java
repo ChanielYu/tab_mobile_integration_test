@@ -1,13 +1,10 @@
 package com.tabcorp.steps;
 
-import com.tabcorp.screens.TAB.HomeScreen;
 import com.tabcorp.screens.TAB.LoginScreen;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**

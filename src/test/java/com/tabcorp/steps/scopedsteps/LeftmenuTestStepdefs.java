@@ -1,4 +1,4 @@
-package com.tabcorp.steps;
+package com.tabcorp.steps.scopedsteps;
 
 /**
  * Created by yuc on 3/13/17.

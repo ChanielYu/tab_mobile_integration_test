@@ -4,7 +4,6 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.WithTimeout;
-import org.openqa.selenium.ElementNotVisibleException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -25,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 @PropertySources({
         @PropertySource("classpath:config_test.properties")
 })
+@Scope("cucumber-glue")
 public class SplashScreenAndroid extends SplashScreen {
     @AndroidFindBy(className = "android.widget.ImageView")
     private MobileElement imageView;
@@ -47,6 +46,15 @@ public class SplashScreenAndroid extends SplashScreen {
     public SplashScreenAndroid(AppiumDriver<? extends MobileElement> driver) {
         super(driver);
         appReset = true;
+    }
+
+    @Override
+    public void passSplashScreen() {
+        ignoreUpdate();
+        grantLocationPermission();
+        ignoreUpdate();
+        confirmOver18();
+
     }
 
     @Override
