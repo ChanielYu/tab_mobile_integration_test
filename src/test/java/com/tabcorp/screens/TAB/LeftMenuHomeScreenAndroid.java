@@ -30,18 +30,23 @@ import static org.junit.Assert.assertTrue;
 })
 public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
 
-    @AndroidFindBy(id = "toolbar")
-    private MobileElement topToolbar;
+    @Autowired
+    private ToolbarAndroid topToolebar;
     @AndroidFindBy(id = "left_drawer")
     private MobileElement leftMenu;
     @AndroidFindBy(id = "join_button")
     private MobileElement joinNowButton;
     @AndroidFindBy(id = "login_button")
     private MobileElement loginButton;
+    @AndroidFindBy(id = "header_home_ntg_label")
+    private MobileElement nextToGoHeader;
+    @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
+    private MobileElement permissionAllowButton;
     private ArrayList<String> topLeftMenulinksList;
     private ArrayList<String> bottomLeftMenulinksList;
     private ArrayList<String> topLeftMenulinksTitleList;
     private ArrayList<String> bottomLeftMenulinksTitleList;
+
 
     @Autowired
     public LeftMenuHomeScreenAndroid(AppiumDriver<? extends MobileElement> driver) {
@@ -50,7 +55,7 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
         topLeftMenulinksList = buildTopLinksList();
         bottomLeftMenulinksList = buildTabLinksList();
         topLeftMenulinksTitleList = buildTopLinksTitleList();
-        bottomLeftMenulinksList = buildBottomLinksTitleList();
+        bottomLeftMenulinksTitleList = buildBottomLinksTitleList();
     }
 
     @Override
@@ -63,17 +68,9 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
         for (int i = 0; i < bottomLeftMenulinksList.size(); i++) {
             assertEquals(bottomLeftMenulinksList.get(i),itemsList.get(i).findElementById("label").getText());
         }
-
         return true;
-
     }
 
-    @Override
-    public void openLeftMenu() {
-
-        MobileElement hamburgerMenu =  topToolbar.findElement(By.xpath("//android.view.ViewGroup[1]/android.widget.ImageButton[1]"));
-        hamburgerMenu.click();
-    }
 
     @Override
     public boolean isLoginJoinDisplayed() {
@@ -96,24 +93,47 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
 
     @Override
     public boolean areLeftMenuLinksValid(){
+        return (verifyTopLeftMenuLinksValid() && verifyBottomLeftMenuLinksValid());
+    }
 
+    private boolean verifyTopLeftMenuLinksValid() {
         //TODO find a nicer way to scroll up
         ((AndroidDriver) driver).pressKeyCode(AndroidKeyCode.BACK);
-        openLeftMenu();
+        topToolebar.openLeftMenu();
         MobileElement topLeftMenuItems = leftMenu.findElement(By.id("linear_list"));
-        List<MobileElement> itemsList = topLeftMenuItems.findElementsByClassName("android.widget.RelativeLayout");
-        assertEquals(topLeftMenulinksList.size(),itemsList.size());
+        List<MobileElement> topItemsList = topLeftMenuItems.findElementsByClassName("android.widget.RelativeLayout");
         //verify Home link
-        itemsList.get(0).click();
-        //TODO verify homescreen
-        openLeftMenu();
+        topItemsList.get(0).click();
+        assertTrue(verifyHomepage());
+        topToolebar.openLeftMenu();
 
-        for (int i = 1; i < itemsList.size(); i++) {
-            System.out.println(itemsList.get(i).findElementById("label").getText() + itemsList.get(i).getAttribute("clickable"));
-            itemsList.get(i).click();
-            assertTrue(verifyPageTitle(topLeftMenulinksTitleList.get(i-1)));
-            openLeftMenu();
+        for (int i = 1; i < topItemsList.size(); i++) {
+            topItemsList.get(i).click();
+            assertTrue(topToolebar.verifyPageTitle(topLeftMenulinksTitleList.get(i-1)));
+            topToolebar.openLeftMenu();
         }
+
+        return true;
+    }
+
+    private boolean verifyBottomLeftMenuLinksValid() {
+
+        MobileElement bottomLeftMenuItems = leftMenu.findElement(By.id("linear_list"));
+        scroll("down");
+        List<MobileElement> bottomItemsList = bottomLeftMenuItems.findElementsByClassName("android.widget.LinearLayout");
+
+        for (int i = 0; i < bottomLeftMenulinksTitleList.size(); i++) {
+            bottomItemsList.get(i).click();
+            //in the Check & Collect, we'll have to click 'Allow' in order to continue
+            if (bottomLeftMenulinksTitleList.get(i).equals("Check & Collect") && permissionAllowButton.isDisplayed()){
+                permissionAllowButton.click();
+            }
+            assertTrue(topToolebar.verifyPageTitle(bottomLeftMenulinksTitleList.get(i)));
+            topToolebar.openLeftMenu();
+            scroll("down");
+            scroll("down");
+        }
+
         return true;
     }
 
@@ -131,14 +151,18 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
         return items;
     }
 
-    public ArrayList<String> buildTopLinksTitleList() {
+    private ArrayList<String> buildTopLinksTitleList() {
         ArrayList<String> items = new ArrayList<String>(Arrays.asList("Racing","Sport","Watch & In-Play"));
         return items;
     }
 
-    public ArrayList<String> buildBottomLinksTitleList() {
+    private ArrayList<String> buildBottomLinksTitleList() {
         ArrayList<String> items = new ArrayList<String>(Arrays.asList("Promotions", "Check & Collect", "What's New","TAB Locator","Settings","Legal","Contact Us"));
         return items;
+    }
+
+    private boolean verifyHomepage(){
+        return nextToGoHeader.isDisplayed();
     }
 
 }
