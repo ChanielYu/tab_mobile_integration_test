@@ -317,8 +317,8 @@ public abstract class BaseScreen {
             screenHeightStart = dimensions.getHeight() * 0.3;
             screenHeightEnd = dimensions.getHeight() * 0.2;
         } else {
-            screenHeightStart = dimensions.getHeight() * 0.5;
-            screenHeightEnd = dimensions.getHeight() * 0.2;
+            screenHeightStart = dimensions.getHeight() * 0.7;
+            screenHeightEnd = dimensions.getHeight() * 0.5;
         }
         int scrollStart = screenHeightStart.intValue();
         int scrollEnd = screenHeightEnd.intValue();

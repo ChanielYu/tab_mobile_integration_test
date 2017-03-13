@@ -1,4 +1,5 @@
 Feature: Left Home menu test
+
   Background: Pass splash screen
     Given Splash screen launched
     Then I grant location permission
