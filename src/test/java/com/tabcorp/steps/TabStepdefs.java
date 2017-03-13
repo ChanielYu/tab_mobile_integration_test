@@ -1,9 +1,9 @@
 package com.tabcorp.steps;
 
+import com.tabcorp.screens.TAB.HomeScreen;
 import com.tabcorp.screens.TAB.LeftMenuHomeScreen;
 import com.tabcorp.screens.TAB.MainScreen;
-import com.tabcorp.screens.TAB.HomeScreen;
-import cucumber.api.PendingException;
+import com.tabcorp.screens.TAB.Toolbar;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -25,6 +25,8 @@ public class TabStepdefs {
     private MainScreen mainScreen;
     @Autowired
     private LeftMenuHomeScreen leftMenu;
+    @Autowired
+    private Toolbar topToolbar;
 
     @And("^I wait for (\\d+) seconds$")
     public void iWaitForSeconds(int seconds) throws Throwable {
@@ -56,7 +58,7 @@ public class TabStepdefs {
 
     @Given("^Left menu is open$")
     public void leftMenuIsOpen() throws Throwable {
-       leftMenu.openLeftMenu();
+       topToolbar.openLeftMenu();
     }
 
 
@@ -73,5 +75,16 @@ public class TabStepdefs {
     @And("^TAB links are displayed$")
     public void tabLinksAreDisplayed() throws Throwable {
         assertTrue(leftMenu.areTabLinksDisplayed());
+    }
+
+
+    @And("^links are valid$")
+    public void linksAreValid() throws Throwable {
+        System.out.println("in linksAreValid");
+        leftMenu.areLeftMenuLinksValid();
+    }
+
+    @And("^Other links are displayed$")
+    public void otherLinksAreDisplayed() throws Throwable {
     }
 }
