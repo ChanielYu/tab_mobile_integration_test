@@ -1,5 +1,6 @@
 package com.tabcorp.screens.TAB;
 
+import com.tabcorp.screens.BaseScreen;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -30,7 +31,7 @@ import static org.junit.Assert.assertTrue;
         @PropertySource("classpath:config_test.properties")
 })
 @Scope("cucumber-glue")
-public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
+public class LeftMenu extends BaseScreen {
 
     @Autowired
     private ToolbarAndroid topToolebar;
@@ -49,9 +50,8 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
     private ArrayList<String> topLeftMenulinksTitleList;
     private ArrayList<String> bottomLeftMenulinksTitleList;
 
-
     @Autowired
-    public LeftMenuHomeScreenAndroid(AppiumDriver<? extends MobileElement> driver) {
+    public LeftMenu(AppiumDriver<? extends MobileElement> driver) {
 
         super(driver);
         topLeftMenulinksList = buildTopLinksList();
@@ -60,7 +60,6 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
         bottomLeftMenulinksTitleList = buildBottomLinksTitleList();
     }
 
-    @Override
     public boolean areTabLinksDisplayed() {
 
         MobileElement leftMenuItems = leftMenu.findElement(By.id("linear_list"));
@@ -68,33 +67,29 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
         List<MobileElement> itemsList = leftMenuItems.findElementsByClassName("android.widget.LinearLayout");
 
         for (int i = 0; i < bottomLeftMenulinksList.size(); i++) {
-            assertEquals(bottomLeftMenulinksList.get(i),itemsList.get(i).findElementById("label").getText());
+            assertEquals(bottomLeftMenulinksList.get(i), itemsList.get(i).findElementById("label").getText());
         }
         return true;
     }
 
-
-    @Override
     public boolean isLoginJoinDisplayed() {
         return loginButton.isDisplayed() && joinNowButton.isDisplayed();
     }
 
-    @Override
     public boolean areTopLinksDisplayed() {
 
         MobileElement leftMenuItems = leftMenu.findElement(By.id("linear_list"));
         List<MobileElement> itemsList = leftMenuItems.findElementsByClassName("android.widget.RelativeLayout");
-        assertEquals(topLeftMenulinksList.size(),itemsList.size());
+        assertEquals(topLeftMenulinksList.size(), itemsList.size());
 
         for (int i = 0; i < topLeftMenulinksList.size(); i++) {
             String itemTitle = topLeftMenulinksList.get(i);
-            assertEquals(itemTitle,itemsList.get(i).findElementById("label").getText());
+            assertEquals(itemTitle, itemsList.get(i).findElementById("label").getText());
         }
         return true;
     }
 
-    @Override
-    public boolean areLeftMenuLinksValid(){
+    public boolean areLeftMenuLinksValid() {
         return (verifyTopLeftMenuLinksValid() && verifyBottomLeftMenuLinksValid());
     }
 
@@ -111,7 +106,7 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
 
         for (int i = 1; i < topItemsList.size(); i++) {
             topItemsList.get(i).click();
-            assertTrue(topToolebar.verifyPageTitle(topLeftMenulinksTitleList.get(i-1)));
+            assertTrue(topToolebar.verifyPageTitle(topLeftMenulinksTitleList.get(i - 1)));
             topToolebar.openLeftMenu();
         }
 
@@ -127,7 +122,7 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
         for (int i = 0; i < bottomLeftMenulinksTitleList.size(); i++) {
             bottomItemsList.get(i).click();
             //in the Check & Collect, we'll have to click 'Allow' in order to continue
-            if (bottomLeftMenulinksTitleList.get(i).equals("Check & Collect") && permissionAllowButton.isDisplayed()){
+            if (bottomLeftMenulinksTitleList.get(i).equals("Check & Collect") && permissionAllowButton.isDisplayed()) {
                 permissionAllowButton.click();
             }
             assertTrue(topToolebar.verifyPageTitle(bottomLeftMenulinksTitleList.get(i)));
@@ -139,31 +134,29 @@ public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
         return true;
     }
 
-    @Override
-    public ArrayList<String> buildTopLinksList() {
+    private ArrayList<String> buildTopLinksList() {
 
-        ArrayList<String> items = new ArrayList<String>(Arrays.asList("Home", "Racing", "Sport","Watch"));
+        ArrayList<String> items = new ArrayList<>(Arrays.asList("Home", "Racing", "Sport", "Watch"));
         return items;
     }
 
-    @Override
-    public ArrayList<String> buildTabLinksList() {
+    private ArrayList<String> buildTabLinksList() {
 
-        ArrayList<String> items = new ArrayList<String>(Arrays.asList("Promotions", "Check & Collect", "What's New","TAB Locator","Settings","Legal","Contact Us","Give Feedback"));
+        ArrayList<String> items = new ArrayList<>(Arrays.asList("Promotions", "Check & Collect", "What's New", "TAB Locator", "Settings", "Legal", "Contact Us", "Give Feedback"));
         return items;
     }
 
     private ArrayList<String> buildTopLinksTitleList() {
-        ArrayList<String> items = new ArrayList<String>(Arrays.asList("Racing","Sport","Watch & In-Play"));
+        ArrayList<String> items = new ArrayList<>(Arrays.asList("Racing", "Sport", "Watch & In-Play"));
         return items;
     }
 
     private ArrayList<String> buildBottomLinksTitleList() {
-        ArrayList<String> items = new ArrayList<String>(Arrays.asList("Promotions", "Check & Collect", "What's New","TAB Locator","Settings","Legal","Contact Us"));
+        ArrayList<String> items = new ArrayList<>(Arrays.asList("Promotions", "Check & Collect", "What's New", "TAB Locator", "Settings", "Legal", "Contact Us"));
         return items;
     }
 
-    private boolean verifyHomepage(){
+    private boolean verifyHomepage() {
         return nextToGoHeader.isDisplayed();
     }
 

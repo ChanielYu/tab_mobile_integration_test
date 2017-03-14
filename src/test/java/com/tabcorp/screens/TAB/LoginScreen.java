@@ -1,6 +1,7 @@
 package com.tabcorp.screens.TAB;
 
 import com.tabcorp.screens.BaseScreen;
+import cucumber.api.java.en.And;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -35,6 +36,10 @@ public class LoginScreen extends BaseScreen {
     @WithTimeout(time = 5, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "submit")
     protected MobileElement loginBt;
+    @AndroidFindBy(id = "alertTitle")
+    private MobileElement alertTitle;
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.Button[1]")
+    private MobileElement alertOkBt;
 
     @Autowired
     public LoginScreen(AppiumDriver<? extends MobileElement> driver) {
@@ -56,5 +61,18 @@ public class LoginScreen extends BaseScreen {
         userName.sendKeys(un);
         passWord.sendKeys(pw);
         loginBt.click();
+    }
+
+    public boolean isLoginFailed() {
+        try {
+            String title = alertTitle.getText();return "Login Error".equals(title);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void dismissAlert() {
+        alertOkBt.click();
     }
 }
