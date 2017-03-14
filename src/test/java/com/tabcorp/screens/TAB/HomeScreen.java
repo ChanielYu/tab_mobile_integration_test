@@ -16,15 +16,13 @@ import java.util.concurrent.TimeUnit;
 public abstract class HomeScreen extends BaseScreen {
     @WithTimeout(time = 5, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "toolbar_balance")
-    protected MobileElement toolbar_balance;
-
+    protected MobileElement toolbarBalance;
     @WithTimeout(time = 3, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "au.com.tabcorp.tab_android_dev:id/btn_login")
     protected MobileElement loginButton;
-
     @WithTimeout(time = 3, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "close_btn")
-    protected MobileElement OkGotItButton; // to close what's new screen
+    protected MobileElement okGotItButton; // to close what's new screen
 
     public HomeScreen(AppiumDriver<? extends MobileElement> driver) {
         super(driver);
@@ -32,7 +30,7 @@ public abstract class HomeScreen extends BaseScreen {
 
     public boolean isUserLogedin() {
         try {
-            return toolbar_balance.isDisplayed();
+            return toolbarBalance.isDisplayed();
         } catch (Exception e) {
             return false;
         }

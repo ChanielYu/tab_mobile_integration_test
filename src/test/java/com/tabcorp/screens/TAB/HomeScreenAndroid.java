@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class HomeScreenAndroid extends HomeScreen {
 
     @AndroidFindBy(id = "toolbar_logo")
-    private MobileElement toolbar_logo;
+    private MobileElement toolbarLogo;
     @Autowired
     public HomeScreenAndroid(AppiumDriver<? extends MobileElement> driver) {
         super(driver);
@@ -30,7 +30,7 @@ public class HomeScreenAndroid extends HomeScreen {
     @Override
     public boolean isHomeScreen() {
         try {
-            return toolbar_logo.isDisplayed();
+            return toolbarLogo.isDisplayed();
         } catch (Exception e) {
             return false;
         }
@@ -39,7 +39,7 @@ public class HomeScreenAndroid extends HomeScreen {
     @Override
     public void passWhatsNew() {
         try {
-            OkGotItButton.click();
+            okGotItButton.click();
         } catch (Exception e) {
             e.printStackTrace();
         }

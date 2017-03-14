@@ -1,9 +1,7 @@
 package com.tabcorp.steps;
 
-import com.tabcorp.screens.TAB.LeftMenuHomeScreen;
-import com.tabcorp.screens.TAB.Toolbar;
+import com.tabcorp.screens.TAB.LeftMenu;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class LeftMenuStepdefs {
     @Autowired
-    private LeftMenuHomeScreen leftMenu;
+    private LeftMenu leftMenu;
 
     @Then("^Login/Join Now is displayed$")
     public void loginJoinNowIsDisplayed() throws Throwable {

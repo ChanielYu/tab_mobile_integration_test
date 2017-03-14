@@ -1,6 +1,7 @@
 package com.tabcorp.steps;
 
 import com.tabcorp.screens.TAB.LoginScreen;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,17 @@ public class LoginScreenStepdefs {
     public void iLoginWithUserPassword(String userName, String passWord) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         loginScreen.login(userName, passWord);
+    }
+
+    @Then("^I shall see alert dialog$")
+    public void iShallSeeAlertDialog() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(loginScreen.isLoginFailed());
+    }
+
+    @Then("^I dismiss the log in failed alert$")
+    public void iDismissTheLogInFailedAlert() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        loginScreen.dismissAlert();
     }
 }
