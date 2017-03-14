@@ -49,7 +49,10 @@ public class AppiumDriverAndroidBeanFactory {
         AppiumDriver<? extends MobileElement> driver;
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Galaxy_Nexus_API_23");
+        /*
+         * We set MobileCapabilityType.DEVICE_NAME as an appium parameter out of here the Samsung_SM-G900F
+         */
+        //capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Galaxy_Nexus_API_23");
         capabilities.setCapability(MobileCapabilityType.NO_RESET, false);
         capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, newCommandTimeout);
         capabilities.setCapability("appActivity", "au.com.tabcorp.sportsbet.ui.SplashActivity");
@@ -63,7 +66,6 @@ public class AppiumDriverAndroidBeanFactory {
                 env = "SUNBETS";
             }
             System.out.println("\nApplication under Test is " + env + " - Android");*/
-        //capabilities.setCapability("deviceName", "Galaxy Nexus 5 -5.0.0 -API 21 - 1080*1920");
         //capabilities.setCapability("resetKeyboard", true);
         //capabilities.setCapability("unicodeKeyboard", true);
         return driver;

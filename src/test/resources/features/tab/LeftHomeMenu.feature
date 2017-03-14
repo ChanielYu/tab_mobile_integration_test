@@ -9,7 +9,7 @@ Feature: Left Home menu test
   Scenario: non logged in user
     When I pass whats new screen
     And I am in Home screen
-    Then Open left menu
+    Then Left menu is open
     When Login/Join Now is displayed
     And Home/Racing/Sport/Watch links are displayed
     And TAB links are displayed
