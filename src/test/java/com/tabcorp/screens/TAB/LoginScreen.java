@@ -36,7 +36,7 @@ public class LoginScreen extends BaseScreen {
     @WithTimeout(time = 5, unit = TimeUnit.SECONDS)
     @AndroidFindBy(id = "submit")
     protected MobileElement loginBt;
-    @AndroidFindBy(id = "alertTitle")
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.TextView[1]")
     private MobileElement alertTitle;
     @AndroidFindBy(xpath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.Button[1]")
     private MobileElement alertOkBt;
@@ -65,7 +65,7 @@ public class LoginScreen extends BaseScreen {
 
     public boolean isLoginFailed() {
         try {
-            String title = alertTitle.getText();return "Login Error".equals(title);
+            return "Login Error".equals(alertTitle.getText());
         } catch (Exception e) {
             e.printStackTrace();
             return false;
