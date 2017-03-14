@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import static org.junit.Assert.assertTrue;
 @PropertySources({
         @PropertySource("classpath:config_test.properties")
 })
+@Scope("cucumber-glue")
 public class LeftMenuHomeScreenAndroid extends LeftMenuHomeScreen {
 
     @Autowired

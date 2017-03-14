@@ -31,7 +31,8 @@ Be sure to checkout the `TAB_mobile_integration_test` project and ensure that is
 3. Right click and select "Create a Run Configuration", make sure created with Junit one, don't use gradle one
 4. Ensure tasks is `cleanTests test`
 5. Ensure vm options is `-Dspring.profiles.active=android` or `-Dspring.profiles.active=ios`
- 
+6. Run from command line ./gradlew -Dspring.profiles.active=android -Dtest.single=TabTest test
+
 ## Tips
 
 - You can only test android or ios one at a time

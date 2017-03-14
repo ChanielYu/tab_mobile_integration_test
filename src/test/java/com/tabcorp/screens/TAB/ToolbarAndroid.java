@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 @PropertySources({
         @PropertySource("classpath:config_test.properties")
 })
+@Scope("cucumber-glue")
 public class ToolbarAndroid extends Toolbar {
 
     @Autowired

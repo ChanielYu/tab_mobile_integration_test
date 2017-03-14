@@ -3,6 +3,7 @@ package com.tabcorp.appium;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,8 +23,6 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @Profile("ios")
 public class AppiumDriverIOSBeanFactory {
-    private static AppiumDriver<? extends MobileElement> driver;
-
     @Value("${appium.server.port}")
     private String appiumPort;
 
@@ -47,24 +46,23 @@ public class AppiumDriverIOSBeanFactory {
     @Bean(destroyMethod = "quit")
     @Scope("cucumber-glue")
     public AppiumDriver<? extends MobileElement> getDriver() throws MalformedURLException {
-        if (driver == null) {
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            String env = null;
-            env = System.getenv("UAT");
-            if (env == null) {
-                env = "SUNBETS";
-            }
-            System.out.println("\nApplication under Test is " + env + " - iOS");
+        AppiumDriver<? extends MobileElement> driver;
+        DesiredCapabilities capabilities = new DesiredCapabilities();
 
-            capabilities.setCapability("platform-version", "9.1");
-            capabilities.setCapability("deviceName", "iPhone 6");
-            capabilities.setCapability("platform-name", "iOS");
-            capabilities.setCapability("noReset", true);
-            capabilities.setCapability("newCommandTimeout", newCommandTimeout);
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.1");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
+        capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, newCommandTimeout);
 
-            driver = new IOSDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
-            driver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
+        driver = new IOSDriver<>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
+        /*String env = null;
+        env = System.getenv("UAT");
+        if (env == null) {
+            env = "SUNBETS";
         }
+        System.out.println("\nApplication under Test is " + env + " - iOS");*/
         return driver;
     }
 }

@@ -4,37 +4,45 @@ import com.tabcorp.screens.BaseScreen;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.WithTimeout;
+import org.springframework.context.annotation.Scope;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by chanielyu on 2/3/17.
  * HomeScreen
  */
 public abstract class HomeScreen extends BaseScreen {
+    @WithTimeout(time = 5, unit = TimeUnit.SECONDS)
+    @AndroidFindBy(id = "toolbar_balance")
+    protected MobileElement toolbar_balance;
+
+    @WithTimeout(time = 3, unit = TimeUnit.SECONDS)
+    @AndroidFindBy(id = "au.com.tabcorp.tab_android_dev:id/btn_login")
+    protected MobileElement loginButton;
+
+    @WithTimeout(time = 3, unit = TimeUnit.SECONDS)
+    @AndroidFindBy(id = "close_btn")
+    protected MobileElement OkGotItButton; // to close what's new screen
+
     public HomeScreen(AppiumDriver<? extends MobileElement> driver) {
         super(driver);
     }
 
-    @AndroidFindBy(id = "au.com.tabcorp.tab_android_dev:id/btn_login")
-    private MobileElement loginButton;
+    public boolean isUserLogedin() {
+        try {
+            return toolbar_balance.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-    @AndroidFindBy(id = "close_btn")
-    private MobileElement OkGotItButton; // the close what's new screen
+    public void enterLoginScreen() {
+        loginButton.click();
+    }
 
-    public abstract boolean isUserLogedin();
+    public abstract boolean isHomeScreen();
 
     public abstract void passWhatsNew();
-
-
-    public MobileElement getOkGotItButton() {
-        return OkGotItButton;
-    }
-
-
-    public MobileElement getLoginButton() {
-        return loginButton;
-    }
-
-
-
-
 }

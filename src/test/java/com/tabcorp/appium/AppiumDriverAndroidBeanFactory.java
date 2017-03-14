@@ -23,8 +23,6 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @Profile("android")
 public class AppiumDriverAndroidBeanFactory {
-    private static AppiumDriver<? extends MobileElement> driver;
-
     @Value("${appium.server.port}")
     private String appiumPort;
 
@@ -48,28 +46,28 @@ public class AppiumDriverAndroidBeanFactory {
     @Bean(destroyMethod = "quit")
     @Scope("cucumber-glue")
     public AppiumDriver<? extends MobileElement> getDriver() throws MalformedURLException {
-        if (driver == null) {
-            DesiredCapabilities capabilities = new DesiredCapabilities();
+        AppiumDriver<? extends MobileElement> driver;
+        DesiredCapabilities capabilities = new DesiredCapabilities();
 
-            capabilities.setCapability("deviceName", "Samsung_SM-G900F");
-            String env = null;
+        /*
+         * We set MobileCapabilityType.DEVICE_NAME as an appium parameter out of here the Samsung_SM-G900F
+         */
+        //capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Galaxy_Nexus_API_23");
+        capabilities.setCapability(MobileCapabilityType.NO_RESET, false);
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, newCommandTimeout);
+        capabilities.setCapability("appActivity", "au.com.tabcorp.sportsbet.ui.SplashActivity");
+
+        driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+        driver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
+        driver.manage().logs().get("logcat");
+            /*String env = null;
             env = System.getenv("UAT");
             if (env == null) {
                 env = "SUNBETS";
             }
-            System.out.println("\nApplication under Test is " + env + " - Android");
-            //capabilities.setCapability("deviceName", "Galaxy Nexus 5 -5.0.0 -API 21 - 1080*1920");
-            capabilities.setCapability("appActivity", "au.com.tabcorp.sportsbet.ui.SplashActivity");
-            //capabilities.setCapability("resetKeyboard", true);
-            //capabilities.setCapability("unicodeKeyboard", true);
-            capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
-            capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, newCommandTimeout);
-
-            driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
-            driver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
-            driver.manage().logs().get("logcat");
-
-        }
+            System.out.println("\nApplication under Test is " + env + " - Android");*/
+        //capabilities.setCapability("resetKeyboard", true);
+        //capabilities.setCapability("unicodeKeyboard", true);
         return driver;
     }
 }

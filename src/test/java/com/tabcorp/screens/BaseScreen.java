@@ -30,30 +30,29 @@ import java.util.concurrent.TimeUnit;
  */
 @SuppressWarnings("unused")
 @Component
-@Profile("android")
 @PropertySources({
         @PropertySource("classpath:config_test.properties")
 })
 public abstract class BaseScreen {
     @Value("${explicit.wait}")
-    protected int explicitWaitTime;
+    private int explicitWaitTime;
 
     @Value("${implicit.wait}")
-    public int implicitWaitTime;
+    private int implicitWaitTime;
 
     @Value("${default.wait}")
-    protected int defaultWaitTime;
+    private int defaultWaitTime;
 
     @Value("${environment}")
     public String environment;
 
     @Value("${scroll.maximumCount}")
-    protected int maxScrollCount;
+    private int maxScrollCount;
 
     @Autowired
     private Environment env;
 
-    protected String platform;
+    private String platform;
 
     protected AppiumDriver<? extends MobileElement> driver;
 
@@ -318,8 +317,8 @@ public abstract class BaseScreen {
             screenHeightStart = dimensions.getHeight() * 0.3;
             screenHeightEnd = dimensions.getHeight() * 0.2;
         } else {
-            screenHeightStart = dimensions.getHeight() * 0.5;
-            screenHeightEnd = dimensions.getHeight() * 0.2;
+            screenHeightStart = dimensions.getHeight() * 0.7;
+            screenHeightEnd = dimensions.getHeight() * 0.5;
         }
         int scrollStart = screenHeightStart.intValue();
         int scrollEnd = screenHeightEnd.intValue();

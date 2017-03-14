@@ -1,10 +1,17 @@
-@android
 Feature: Left Home menu test
-  Background: Enter home screen
-    Given Left menu is open
+
+  Background: Pass splash screen
+    Given Splash screen launched
+    Then I grant location permission
+    And I confirm over 18
+
+  @android @ios
   Scenario: non logged in user
-    Then  Login/Join Now is displayed
-    And   Home/Racing/Sport/Watch links are displayed
+    When I pass whats new screen
+    And I am in Home screen
+    Then Left menu is open
+    When Login/Join Now is displayed
+    And Home/Racing/Sport/Watch links are displayed
     And TAB links are displayed
     And Other links are displayed
     And links are valid
